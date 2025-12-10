@@ -1,33 +1,24 @@
-
-
 //We only have to change background-color and height of the sorting element.
 
-var speed=1000;
+var speed = 1000;
 
-inp_aspeed.addEventListener("input",vis_speed);
+inp_aspeed.addEventListener("input", vis_speed);
 
-function vis_speed()
-{
-    var array_speed=inp_aspeed.value;
-    switch(parseInt(array_speed))
-    {
-        case 1: speed=1;
-                break;
-        case 2: speed=10;
-                break;
-        case 3: speed=100;
-                break;
-        case 4: speed=1000;
-                break;
-        case 5: speed=10000;
-                break;
+function vis_speed() {
+    var array_speed = inp_aspeed.value;
+    switch (parseInt(array_speed)) {
+        case 1: speed = 1; break;
+        case 2: speed = 10; break;
+        case 3: speed = 100; break;
+        case 4: speed = 1000; break;
+        case 5: speed = 10000; break;
     }
-    
-    delay_time=10000/(Math.floor(array_size/10)*speed);        //Decrease numerator to increase speed.
+
+    delay_time = 10000 / (Math.floor(array_size / 10) * speed);
 }
 
-var delay_time=10000/(Math.floor(array_size/10)*speed);        //Decrease numerator to increase speed.
-var c_delay=0;//This is updated ov every div change so that visualization is visible.
+var delay_time = 10000 / (Math.floor(array_size / 10) * speed);
+var c_delay = 0;   // Updated on every div change
 
 
 function div_update(cont, height, color)
@@ -35,29 +26,44 @@ function div_update(cont, height, color)
     window.setTimeout(function() {
 
         cont.style.margin = "0% " + margin_size + "%";
-        cont.style.width = (100/array_size - (2*margin_size)) + "%";
 
-        // Change height here
-        cont.style.height = height + "%";   // ← modify this
+        /* 
+        ----------------------------
+        1) MAKE BARS WIDER
+        ----------------------------
+        Old: (100/array_size)
+        New: (250/array_size) → wider bars
+        ----------------------------
+        */
+        cont.style.width = (250/array_size - (2*margin_size)) + "%";
 
-        // Change background color here
-        cont.style.backgroundColor = color; // ← modify this
+        /*
+        ----------------------------
+        2) MAKE BARS TALLER
+        ----------------------------
+        Old: height + "%"
+        New: (height * 2) + "%" → double height
+        ----------------------------
+        */
+        cont.style.height = (height * 2) + "%";
+
+        // Background color (same)
+        cont.style.backgroundColor = color;
 
     }, c_delay += delay_time);
 }
 
-function enable_buttons()
-{
-    window.setTimeout(function(){
-        for(var i=0;i<butts_algos.length;i++)
-        {
-            butts_algos[i].classList=[];
+function enable_buttons() {
+    window.setTimeout(function() {
+        for (var i = 0; i < butts_algos.length; i++) {
+
+            butts_algos[i].classList = [];
             butts_algos[i].classList.add("butt_unselected");
 
-            butts_algos[i].disabled=false;
-            inp_as.disabled=false;
-            inp_gen.disabled=false;
-            inp_aspeed.disabled=false;
+            butts_algos[i].disabled = false;
+            inp_as.disabled = false;
+            inp_gen.disabled = false;
+            inp_aspeed.disabled = false;
         }
-    },c_delay+=delay_time);
+    }, c_delay += delay_time);
 }

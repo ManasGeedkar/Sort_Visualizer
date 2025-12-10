@@ -23,19 +23,42 @@ cont.style="flex-direction:row";
 inp_gen.addEventListener("click",generate_array);
 inp_as.addEventListener("input",update_array_size);
 
-function generate_array()
-{
-    cont.innerHTML="";
+function generate_array() {
+    cont.innerHTML = "";
 
-    for(var i=0;i<array_size;i++)
-    {
-        div_sizes[i]=Math.floor(Math.random() * 0.5*(inp_as.max - inp_as.min) ) + 10;
-        divs[i]=document.createElement("div");
-        cont.appendChild(divs[i]);
-        margin_size=0.1;
-        divs[i].style=" margin:0% " + margin_size + "%; background-color:blue; width:" + (100/array_size-(2*margin_size)) + "%; height:" + (div_sizes[i]) + "%;";
+    for (var i = 0; i < array_size; i++) {
+
+        // generate random height
+        div_sizes[i] = Math.floor(Math.random() * 0.5 * (inp_as.max - inp_as.min)) + 10;
+
+        // --- Create wrapper for bar + number ---
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("bar-wrapper");
+
+        // --- Create the bar ---
+        divs[i] = document.createElement("div");
+        divs[i].classList.add("bar");
+        divs[i].style = `
+            margin: 0% 0.1%;
+            background-color: blue;
+            width: ${100 / array_size - 0.2}%;
+            height: ${div_sizes[i]}%;
+        `;
+
+        // --- Create the number text ---
+        let num = document.createElement("div");
+        num.classList.add("bar-number");
+        num.innerText = div_sizes[i];
+
+        // --- Add bar + number into wrapper ---
+        wrapper.appendChild(divs[i]);
+        wrapper.appendChild(num);
+
+        // --- Add wrapper to container ---
+        cont.appendChild(wrapper);
     }
 }
+
 
 function update_array_size()
 {

@@ -21,36 +21,11 @@ var delay_time = 10000 / (Math.floor(array_size / 10) * speed);
 var c_delay = 0;   // Updated on every div change
 
 
-function div_update(cont, height, color)
+function div_update(cont,height,color)
 {
-    window.setTimeout(function() {
-
-        cont.style.margin = "0% " + margin_size + "%";
-
-        /* 
-        ----------------------------
-        1) MAKE BARS WIDER
-        ----------------------------
-        Old: (100/array_size)
-        New: (250/array_size) → wider bars
-        ----------------------------
-        */
-        cont.style.width = (250/array_size - (2*margin_size)) + "%";
-
-        /*
-        ----------------------------
-        2) MAKE BARS TALLER
-        ----------------------------
-        Old: height + "%"
-        New: (height * 2) + "%" → double height
-        ----------------------------
-        */
-        cont.style.height = (height * 2) + "%";
-
-        // Background color (same)
-        cont.style.backgroundColor = color;
-
-    }, c_delay += delay_time);
+    window.setTimeout(function(){
+        cont.style=" margin:0% " + margin_size + "%; width:" + (100/array_size-(2*margin_size)) + "%; height:" + height + "%; background-color:" + color + ";";
+    },c_delay+=delay_time); 
 }
 
 function enable_buttons() {

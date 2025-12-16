@@ -165,4 +165,21 @@ section #Info_Cont2 h3 {
 .hide {
   display: none;
 }
+/* updated part  */
+.bar {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
 
+/* Number on bar */
+.bar-value {
+    position: absolute;
+    bottom: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 1px 1px 3px black;
+    user-select: none;
+}

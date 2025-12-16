@@ -29,12 +29,37 @@ function vis_speed()
 var delay_time=10000/(Math.floor(array_size/10)*speed);        //Decrease numerator to increase speed.
 var c_delay=0;//This is updated ov every div change so that visualization is visible.
 
+// function div_update(cont,height,color)
+// {
+//     window.setTimeout(function(){
+//         cont.style=" margin:0% " + margin_size + "%; width:" + (100/array_size-(2*margin_size)) + "%; height:" + height + "%; background-color:" + color + ";";
+//     },c_delay+=delay_time);
+// }
+
+// updated part 
+
 function div_update(cont,height,color)
 {
     window.setTimeout(function(){
-        cont.style=" margin:0% " + margin_size + "%; width:" + (100/array_size-(2*margin_size)) + "%; height:" + height + "%; background-color:" + color + ";";
+
+        cont.style=" margin:0% " + margin_size + "%; width:" +
+        (100/array_size-(2*margin_size)) + "%; height:" +
+        height + "%; background-color:" + color + ";";
+
+        /* ADD NUMBER ON BAR */
+        cont.innerText = Math.floor(height);
+        cont.style.color = "white";
+        cont.style.fontWeight = "bold";
+        cont.style.fontSize = "14px";
+        cont.style.textAlign = "center";
+        cont.style.display = "flex";
+        cont.style.alignItems = "flex-end";
+        cont.style.justifyContent = "center";
+
     },c_delay+=delay_time);
-}
+} 
+
+//
 
 function enable_buttons()
 {
